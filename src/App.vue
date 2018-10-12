@@ -1,9 +1,12 @@
 <template>
   <div id="app">
-    <Header/>
-    <ul>
-      <li v-for="(link, index) in getTypes"><a href="#" :class="link.class">{{link.name}}</a></li>
-    </ul>
+    <header>
+    <Logo/>
+      <ul class="navigation">
+        <li v-for="(link, index) in getTypes"><a href="#" :class="link.class">{{link.name}}</a></li>
+      </ul>
+    </header>
+
     <div class="cards">
       <Card v-for="(site, index) in sites" :card="site"></Card>
     </div>
@@ -11,7 +14,7 @@
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Logo from './components/Logo.vue'
 import Card from './components/Card.vue'
 import { db } from './main.js'
 
@@ -29,7 +32,7 @@ export default {
   },
   components: {
     Card,
-    Header
+    Logo
   },
    computed: {
     getTypes: function(){
@@ -60,14 +63,73 @@ export default {
     margin: 0 auto;
   }
 
-  p{
+  p,h3{
     font-family: 'Open Sans', sans-serif;
   }
+
+  h3{
+    font-size: 20px;
+  }
+
+  header{
+    padding: 25px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .navigation{
+    width: 45%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+
+    li a{
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: capitalize;
+      color: #000;
+      font-size: 24px;
+      border-bottom-width: 3px;
+      border-bottom-style: solid;
+
+      &.label{
+        border-bottom-color: $yellow;
+        &:hover{
+          background: $yellow;
+        }
+      }
+
+      &.radio{
+        border-bottom-color: $green;
+        &:hover{
+          background: $green;
+        }
+      }
+
+      &.mags{
+        border-bottom-color: $purple;
+        &:hover{
+          background: $purple;
+        }
+      }
+
+      &.platform{
+        border-bottom-color: $pink;
+        &:hover{
+          background: $pink;
+        }
+      }
+    }
+  }
+
+
 
   .cards{
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 20px;
+    grid-gap: 50px;
 
     @media screen and (min-width: 480px){
           grid-template-columns: repeat(2, 1fr);

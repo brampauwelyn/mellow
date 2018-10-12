@@ -24,14 +24,16 @@ export default {
   -webkit-box-shadow: 0px 10px 19px 0px rgba(50, 50, 50, 0.3);
   -moz-box-shadow:    0px 10px 19px 0px rgba(50, 50, 50, 0.3);
   box-shadow:         0px 10px 19px 0px rgba(50, 50, 50, 0.3);
+  transform: translateY(-15px);
 }
 
 .card{
   display:block;
   float:left;
   background-color:#FFFFFF;
-  transition-property: box-shadow;
-  transition-duration:0.4s;
+  transition-property: box-shadow, transform;
+  transform: translateY(0);
+  transition-duration:0.3s;
 
   h3{
     margin-bottom:10px;
@@ -74,12 +76,6 @@ export default {
   }
 }
 
-.card.radio{
-  border-top: 8px solid $green;
-}
-.card.mags{
-  border-top: 8px solid $yellow;
-}
 
 </style>
 
