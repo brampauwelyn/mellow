@@ -3,13 +3,14 @@
     <header>
     <Logo/>
       <ul class="navigation">
-        <li v-for="(link, index) in getTypes"><a href="#" :class="link.class">{{link.name}}</a></li>
+        <li v-for="(link, index) in getTypes"><a href="#" @click="filterType(link.name)"  :class="link.class">{{link.name}}</a></li>
       </ul>
     </header>
 
     <div class="cards">
-      <Card v-for="(site, index) in sites" :card="site"></Card>
+      <Card v-show="filter === 'all' || filter === site.type" v-for="(site, index) in sites" :card="site" :key="index"></Card>
     </div>
+
   </div>
 </template>
 
@@ -22,7 +23,8 @@ export default {
   name: 'app',
   data: function(){
     return{
-      sites: []
+      sites: [],
+      filter: 'all'
     }
   },
   firestore(){
@@ -34,7 +36,13 @@ export default {
     Card,
     Logo
   },
-   computed: {
+  methods: {
+    filterType: function(type){
+      console.log(type);
+      this.filter = type;
+    }
+  },
+  computed: {
     getTypes: function(){
       var typeCheck = [];
       var types = [];
@@ -123,8 +131,6 @@ export default {
       }
     }
   }
-
-
 
   .cards{
     display: grid;

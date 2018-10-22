@@ -1,5 +1,6 @@
 <template>
-  <div :class="'card ' + card.typeClass">
+  <transition name="sitecard">
+    <div :class="'card ' + card.typeClass">
     <div class="card-image">
       <img :src="card.image" alt="site title">
       <div class="card-image-overlay"></div>
@@ -9,6 +10,7 @@
       <p>{{card.description}}</p>
     </div>
   </div>
+  </transition>
 </template>
 
 
@@ -68,12 +70,41 @@ export default {
 
     img{
       display: block;
+      object-fit: cover;
       width:100%;
       padding:0;
       margin:0;
     }
 
   }
+}
+
+
+.sitecard-leave{
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sitecard-leave-to{
+  opacity: 0;
+}
+
+.sitecard-leave-active{
+  transition: transform,opacity .15s ease-in;
+}
+
+.sitecard-enter{
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.sitecard-enter-to{
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sitecard-enter-active{
+  transition: transform,opacity .15s .15s ease-in;
 }
 
 
